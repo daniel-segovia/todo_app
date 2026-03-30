@@ -24,16 +24,7 @@ class todoView:
         )
         self.dd.pack(pady=10)
 
-        self.update_view()
-
-    def update_view(self, env_file="model/enviroments.txt", id_env=1):
-        with open(env_file, "r") as env_file:
-            self.enviroments = []
-            self.enviroments = [line.strip() for line in env_file]
-
-        self.dd.configure(values=self.enviroments)
-        if self.enviroments:
-            self.dd.set(self.enviroments[int(id_env)])
+        add_todo.update_view(self)
         
     def runApp(self):
         self.app.mainloop()
