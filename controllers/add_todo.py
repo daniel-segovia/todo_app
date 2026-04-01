@@ -24,8 +24,7 @@ def update_view(self, env_file="model/enviroments.txt", id_env=0):
 
 def add_task(self):
     env = self.dd.get()
-    with open(f"{env}.csv", "r") as env_test:
-        print(env_test.read())
+    print(env)
 
 
 
