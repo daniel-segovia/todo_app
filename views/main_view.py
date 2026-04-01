@@ -22,7 +22,13 @@ class todoView:
         self.dd = ctk.CTkComboBox(
             self.app, width=300, height=100
         )
+        self.addtsk = ctk.CTkButton(
+            self.app, width=100, height=20,
+            text = "add task",
+            command = self.add_task
+        )
         self.dd.pack(pady=10)
+        self.addtsk.pack(pady=10)
 
         add_todo.update_view(self)
         
@@ -31,4 +37,7 @@ class todoView:
 
     def add_enviroment(self):
         add_todo.add_env(self)
+
+    def add_task(self):
+        add_todo.add_task(self)
  
