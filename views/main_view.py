@@ -20,7 +20,8 @@ class todoView:
 
         # Dropdown (Row 0)
         self.dd = ctk.CTkComboBox(
-            self.app, width=150, height=30
+            self.app, width=150, height=30,
+            command=self.update_dd
         )
         self.dd.grid(row=0, column=0, columnspan=3, sticky="ew", padx=10, pady=5)
         self.dd.configure(state="readonly")
@@ -86,3 +87,7 @@ class todoView:
         self.scroll_frame.update_dd(env)
         self.scroll_frame.print_tasks_list(env)
         #list_tasks_frames.print_tasks_list(self, env)
+
+    def update_dd(self, env):
+        env =  self.dd.get()
+        self.scroll_frame.update_dd(env)
