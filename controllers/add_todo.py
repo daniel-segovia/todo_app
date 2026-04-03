@@ -14,7 +14,7 @@ def add_env(self):
             print(f"enviroment: {new_enviroment} added to list\n")
             
             with open(f"model/files/{new_enviroment}.csv", "w") as new_file:
-                new_file.write("user,title,description,status")
+                new_file.write("-----start-----")
     update_view(self, id_env="-1")
     
 
@@ -31,16 +31,3 @@ def update_view(self, env_file="model/enviroments.txt", id_env=0):
 
     if self.enviroments:
         self.dd.set(self.enviroments[int(id_env)])
-
-def add_task(self):
-    env = self.dd.get()
-    title = input("insert title: \n")
-    desc = input("please instert input of task")
-    with open(f"model/files/{env}.csv", "a") as new_task:
-        new_task.write("\n" + f"{gp.getuser()},{title},{desc},false")
-    
-
-
-
-
-

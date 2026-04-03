@@ -1,7 +1,9 @@
 from model import todoData
+from model import list_tasks_frames
 from controllers import add_todo
 from controllers import remove_todo
 from controllers import add_task
+from controllers import print_tasks
 import customtkinter as ctk
 
 class todoView:
@@ -22,17 +24,15 @@ class todoView:
         )
         self.dd.grid(row=0, column=0, columnspan=3, sticky="ew", padx=10, pady=5)
         self.dd.configure(state="readonly")
-        
-        # Textarea (Row 1)
-        self.text_area = ctk.CTkTextbox(
+
+        self.scroll_frame = list_tasks_frames.ScrollableFrame(
             self.app,
             width=300,
-            height=150,
-            scrollbar_button_color="black",
-            activate_scrollbars=True
+            height=150
         )
-        self.text_area.grid(row=1, column=0, columnspan=3, sticky="nsew", padx=10, pady=5)
-        self.text_area.configure(state="disabled")
+        self.scroll_frame.grid(row=1, column=0, columnspan=3, sticky="nsew", padx=10, pady=5)
+        
+        # Textarea (Row 1)
 
         # Buttons (Row 2)
         self.btn = ctk.CTkButton(
@@ -63,6 +63,8 @@ class todoView:
         self.app.grid_columnconfigure(2, weight=1)
 
         add_todo.update_view(self)
+        self.print_tasks_func()
+        
 
     def runApp(self):
         self.app.mainloop()
@@ -78,3 +80,9 @@ class todoView:
 
     def remove_env(self):
         remove_todo.remove_env(self)
+
+    def print_tasks_func(self):
+        env = self.dd.get()
+        self.scroll_frame.update_dd(env)
+        self.scroll_frame.print_tasks_list(env)
+        #list_tasks_frames.print_tasks_list(self, env)
